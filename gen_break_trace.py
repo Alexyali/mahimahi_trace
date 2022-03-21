@@ -15,16 +15,13 @@ BREAK_DURATION = 1*1000 # ms
 TOTAL_TIME = 60*1000   # ms
 
 
-with open("traces/break.trace", "w") as f:
-    f.close()
-
 fp = open("traces/break_trace.log", "w")
 
 now_time = 0
 drop_c = 1
 rate_t = []
 time_t = []
-with open("traces/break.trace", "a") as f:
+with open("traces/break.trace", "w") as f:
     while(now_time < TOTAL_TIME):
 
         if now_time < BREAK_TIME:

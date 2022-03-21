@@ -11,16 +11,12 @@ MAX_DURATION = 800      # ms
 
 TOTAL_TIME = 60*1000   # ms
 
-
-with open("traces/period.trace", "w") as f:
-    f.close()
-
 fp = open("traces/period_trace.log", "w")
 
 now_time = 0
 rate_t = []
 time_t = []
-with open("traces/period.trace", "a") as f:
+with open("traces/period.trace", "w") as f:
     while(now_time < TOTAL_TIME):
         random_rate = random.randint(MIN_RATE, MAX_RATE)
         interval = int(MTU_SIZE*8*1000/random_rate)
