@@ -3,9 +3,8 @@
 
 import os
 import argparse
-from ast import parse
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
 total_time = 60*1000 # ms
 sample_interval = 400 # ms
