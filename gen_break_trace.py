@@ -14,6 +14,8 @@ BREAK_DURATION = 1*1000 # ms
 
 TOTAL_TIME = 60*1000   # ms
 
+DECR_STEP = 0.2
+INCR_STEP = 0.1
 
 fp = open("traces/break_trace.log", "w")
 
@@ -27,14 +29,14 @@ with open("traces/break.trace", "w") as f:
         if now_time < BREAK_TIME:
             random_rate = random.randint(MIN_RATE, MAX_RATE)
         elif now_time < BREAK_TIME+BREAK_DURATION:
-            drop_c -= 0.2
+            drop_c -= DECR_STEP
             if drop_c < 0.1:
                 drop_c = 0.1
             random_rate = random.randint(int(MIN_RATE*drop_c), int(MAX_RATE*drop_c))
             assert random_rate>0
         else:
             if drop_c < 1:
-                drop_c += 0.1
+                drop_c += INCR_STEP
                 random_rate = random.randint(int(MIN_RATE*drop_c), int(MAX_RATE*drop_c))
             else:
                 random_rate = random.randint(MIN_RATE, MAX_RATE)
