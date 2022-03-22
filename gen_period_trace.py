@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 MTU_SIZE = 1500         # byte
 
-MAX_RATE = 1500*1000    # bps
+MAX_RATE = 1500*1000    # bps, should below 12mbps
 MIN_RATE = 800*1000     # bps
 
 MIN_DURATION = 200      # ms
