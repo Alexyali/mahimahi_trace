@@ -38,7 +38,7 @@ with open("traces/period.trace", "w") as f:
                     f.write(str(i)+'\n')
 
         now_time = now_time+random_duration
-        rate_t.append(random_rate/1000)
+        rate_t.append(random_rate/1000000)
         time_t.append(now_time/1000)
 
 fp.close()
@@ -46,8 +46,8 @@ fp.close()
 plt.figure(figsize=(12,5))
 plt.step(time_t, rate_t)
 plt.grid()
-plt.ylim(0, MAX_RATE/1000)
-plt.ylabel("rate/kbps", fontsize=16)
+plt.ylim(0, MAX_RATE/1000000)
+plt.ylabel("rate/Mbps", fontsize=16)
 plt.xlabel("time/s", fontsize=16)
 plt.tick_params(labelsize=15)
 plt.savefig("traces/period_trace.png",dpi=300)
