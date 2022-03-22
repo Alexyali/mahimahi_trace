@@ -11,6 +11,19 @@ MAX_DURATION = 800      # ms
 
 TOTAL_TIME = 60*1000   # ms
 
+def random_num_with_fix_total(maxValue, num)->list:
+    '''
+    生成总和固定的整数序列
+    maxvalue: 序列总和
+    num: 要生成的整数个数
+    '''
+    a = random.sample(range(1,maxValue), k=num-1)
+    a.append(0)
+    a.append(maxValue)
+    a = sorted(a)
+    b = [ a[i]-a[i-1] for i in range(1, len(a)) ]
+    return b
+
 fp = open("traces/period_trace.log", "w")
 
 now_time = 0
@@ -29,11 +42,14 @@ with open("traces/period.trace", "w") as f:
             for i in range(now_time+interval, now_time+random_duration+interval, interval):
                 f.write(str(i)+'\n')
         else:
-            max_cnt = int(1/interval)
             if now_time == 0:
                 now_time = 1
 
+            cnt_list = random_num_with_fix_total(int(random_duration/interval), random_duration)
             for i in range(now_time, now_time+random_duration):
+                max_cnt = 1/interval
+                if max_cnt % 1 != 0:
+                    max_cnt = cnt_list.pop()
                 for j in range(max_cnt):
                     f.write(str(i)+'\n')
 
