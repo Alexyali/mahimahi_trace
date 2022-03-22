@@ -1,5 +1,6 @@
 import random
 import matplotlib.pyplot as plt
+from gen_period_trace import random_num_with_fix_total
 
 MTU_SIZE = 1500         # byte
 
@@ -45,8 +46,23 @@ with open("traces/break.trace", "w") as f:
         random_duration = random.randint(MIN_DURATION, MAX_DURATION)
         fp.write("rate: %d \t duration: %d \n" %(random_rate, random_duration))
 
-        for i in range(now_time+interval, now_time+random_duration+interval, interval):
-            f.write(str(i)+'\n')
+        if interval >= 1:
+            interval_list = random_num_with_fix_total(random_duration, int(random_duration/interval))
+            data = now_time
+            for i in interval_list:
+                data += i
+                f.write(str(data)+'\n')
+        else:
+            if now_time == 0:
+                now_time = 1
+
+            cnt_list = random_num_with_fix_total(int(random_duration/interval), random_duration)
+            for i in range(now_time, now_time+random_duration):
+                max_cnt = 1/interval
+                if max_cnt % 1 != 0:
+                    max_cnt = cnt_list.pop()
+                for j in range(max_cnt):
+                    f.write(str(i)+'\n')
 
         now_time = now_time+random_duration
         rate_t.append(random_rate/1000)
