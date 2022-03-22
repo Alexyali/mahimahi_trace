@@ -2,18 +2,18 @@ import random
 import matplotlib.pyplot as plt
 from gen_period_trace import random_num_with_fix_total
 
-MTU_SIZE = 1500         # byte
+MTU_SIZE = 1500          # byte
 
 MAX_RATE = 15000*1000    # bps
 MIN_RATE = 8000*1000     # bps
 
-MIN_DURATION = 200      # ms
-MAX_DURATION = 400      # ms
+MIN_DURATION = 200       # ms
+MAX_DURATION = 400       # ms
 
-BREAK_TIME = 28*1000  # ms
-BREAK_DURATION = 1*1000 # ms
+BREAK_TIME = 28*1000     # ms
+BREAK_DURATION = 1*1000  # ms
 
-TOTAL_TIME = 60*1000   # ms
+TOTAL_TIME = 60*1000     # ms
 
 DECR_STEP = 0.2
 INCR_STEP = 0.1

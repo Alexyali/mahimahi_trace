@@ -1,15 +1,15 @@
 import random
 import matplotlib.pyplot as plt
 
-MTU_SIZE = 1500         # byte
+MTU_SIZE = 1500          # byte
 
 MAX_RATE = 24000*1000    # bps
 MIN_RATE = 8000*1000     # bps
 
-MIN_DURATION = 200      # ms
-MAX_DURATION = 800      # ms
+MIN_DURATION = 200       # ms
+MAX_DURATION = 800       # ms
 
-TOTAL_TIME = 60*1000   # ms
+TOTAL_TIME = 60*1000     # ms
 
 def random_num_with_fix_total(maxValue, num)->list:
     '''
