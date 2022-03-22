@@ -6,13 +6,13 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
-total_time = 60*1000 # ms
-sample_interval = 400 # ms
 MTU_SIZE = 1500 * 8 # bit
 
-def get_data(trace_path):
+def get_data(trace_path, time, interval):
 
     data = []
+    total_time = time*1000
+    sample_interval = interval
     trace_name = os.path.basename(trace_path)
     with open(trace_path, 'r') as f:
         lines = f.readlines()
@@ -59,6 +59,8 @@ def init_args():
     drive_trace = "/usr/share/mahimahi/traces/ATT-LTE-driving-2016.down"
     walk_trace = "/home/alex/DeepCC.v1.0/deepcc.v1.0/traces/trace-1553189663-ts-walking"
     parser.add_argument("--trace", type=str, default=drive_trace, help="the network trace path")
+    parser.add_argument("--time", type=int, default=60, help="total time(s)")
+    parser.add_argument("--interval", type=int, default=400, help="bandwidth sample interval(ms)")
     parser.add_argument("--output", type=str, default=None, required=True, help="output folder")
 
     return parser
@@ -66,5 +68,5 @@ def init_args():
 if __name__ == "__main__":
     parser = init_args()
     args = parser.parse_args()
-    time_t, rate_t, trace_n = get_data(args.trace)
+    time_t, rate_t, trace_n = get_data(args.trace, args.time, args.interval)
     draw_rate(time_t, rate_t, trace_n, args.output)

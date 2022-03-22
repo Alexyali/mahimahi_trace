@@ -45,5 +45,5 @@ $ python3 gen_break_trace.py
 `draw_trace.py`直接通过分析trace文件来提取带宽信息，并绘制真实的带宽变化图，运行方法：
 
 ```shell
-$ python3 draw_trace.py --trace [trace path] --output [output folder]
+$ python3 draw_trace.py --trace [trace path]  --time [total_time] --interval [sample interval] --output [output folder]
 ```
