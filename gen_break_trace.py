@@ -4,8 +4,8 @@ from gen_period_trace import random_num_with_fix_total
 
 MTU_SIZE = 1500         # byte
 
-MAX_RATE = 1100*1000    # bps
-MIN_RATE = 900*1000     # bps
+MAX_RATE = 15000*1000    # bps
+MIN_RATE = 8000*1000     # bps
 
 MIN_DURATION = 200      # ms
 MAX_DURATION = 400      # ms
@@ -42,10 +42,10 @@ with open("traces/break.trace", "w") as f:
             else:
                 random_rate = random.randint(MIN_RATE, MAX_RATE)
 
-        interval = int(MTU_SIZE*8*1000/random_rate)
         random_duration = random.randint(MIN_DURATION, MAX_DURATION)
         fp.write("rate: %d \t duration: %d \n" %(random_rate, random_duration))
 
+        interval = MTU_SIZE*8*1000/random_rate
         if interval >= 1:
             interval_list = random_num_with_fix_total(random_duration, int(random_duration/interval))
             data = now_time
