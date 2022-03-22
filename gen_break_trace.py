@@ -48,7 +48,7 @@ with open("traces/break.trace", "w") as f:
         for i in range(now_time+interval, now_time+random_duration+interval, interval):
             f.write(str(i)+'\n')
 
-        now_time = now_time+random_duration+interval
+        now_time = now_time+random_duration
         rate_t.append(random_rate/1000)
         time_t.append(now_time/1000)
 
