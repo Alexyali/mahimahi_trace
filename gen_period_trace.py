@@ -38,9 +38,11 @@ with open("traces/period.trace", "w") as f:
         interval = MTU_SIZE*8*1000/random_rate
 
         if interval >= 1:
-            interval = int(interval)
-            for i in range(now_time+interval, now_time+random_duration+interval, interval):
-                f.write(str(i)+'\n')
+            interval_list = random_num_with_fix_total(random_duration, int(random_duration/interval))
+            data = now_time
+            for i in interval_list:
+                data += i
+                f.write(str(data)+'\n')
         else:
             if now_time == 0:
                 now_time = 1
