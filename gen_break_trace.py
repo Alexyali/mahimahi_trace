@@ -22,8 +22,6 @@ fp = open("traces/break_trace.log", "w")
 
 now_time = 0
 drop_c = 1
-rate_t = []
-time_t = []
 with open("traces/break.trace", "w") as f:
     while(now_time < TOTAL_TIME):
 
@@ -65,16 +63,5 @@ with open("traces/break.trace", "w") as f:
                     f.write(str(i)+'\n')
 
         now_time = now_time+random_duration
-        rate_t.append(random_rate/1000000)
-        time_t.append(now_time/1000)
 
 fp.close()
-
-plt.figure(figsize=(12,5))
-plt.step(time_t, rate_t)
-plt.grid()
-plt.ylim(0, MAX_RATE/1000000)
-plt.ylabel("rate/Mbps", fontsize=16)
-plt.xlabel("time/s", fontsize=16)
-plt.tick_params(labelsize=15)
-plt.savefig("traces/break_trace.png",dpi=300)

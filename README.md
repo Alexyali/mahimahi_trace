@@ -38,9 +38,7 @@ $ python3 gen_break_trace.py
 
 ## 网络路径可视化
 
-虽然调用`gen_period_trace.py`和`gen_break_trace.py`会自动生成网络带宽变化图，但是这并不准确，因为在生成路径的过程中涉及取整等计算。
-
-`draw_trace.py`直接通过分析trace文件来提取带宽信息，并绘制真实的带宽变化图，运行方法：
+`draw_trace.py`通过分析trace来提取带宽信息，并绘制真实的带宽变化图，运行方法：
 
 ```shell
 $ python3 draw_trace.py --trace [trace path]  --time [total_time] --interval [sample interval] --output [output folder]
