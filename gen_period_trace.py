@@ -26,8 +26,9 @@ def random_num_with_fix_total(maxValue, num)->list:
 
 fp = open("traces/period_trace.log", "w")
 
-now_time = 0
 with open("traces/period.trace", "w") as f:
+
+    now_time = 0
     while(now_time < TOTAL_TIME):
         random_rate = random.randint(MIN_RATE, MAX_RATE)
         random_duration = random.randint(MIN_DURATION, MAX_DURATION)
@@ -54,5 +55,3 @@ with open("traces/period.trace", "w") as f:
                     f.write(str(i)+'\n')
 
         now_time = now_time+random_duration
-
-fp.close()

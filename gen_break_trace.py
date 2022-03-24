@@ -20,9 +20,10 @@ INCR_STEP = 0.1
 
 fp = open("traces/break_trace.log", "w")
 
-now_time = 0
-drop_c = 1
 with open("traces/break.trace", "w") as f:
+
+    now_time = 0
+    drop_c = 1
     while(now_time < TOTAL_TIME):
 
         if now_time < BREAK_TIME:
@@ -63,5 +64,3 @@ with open("traces/break.trace", "w") as f:
                     f.write(str(i)+'\n')
 
         now_time = now_time+random_duration
-
-fp.close()
