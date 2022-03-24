@@ -1,3 +1,4 @@
+import json
 import random
 import matplotlib.pyplot as plt
 
@@ -24,15 +25,27 @@ def random_num_with_fix_total(maxValue, num)->list:
     b = [ a[i]-a[i-1] for i in range(1, len(a)) ]
     return b
 
+trace_json = {}
+trace_json["type"] = "video"
+trace_json["downlink"] = {}
+trace_json["uplink"] = {}
+trace_json_path = "traces/period_trace.json"
+
 fp = open("traces/period_trace.log", "w")
 
 with open("traces/period.trace", "w") as f:
 
     now_time = 0
+    trace_pattern = []
     while(now_time < TOTAL_TIME):
         random_rate = random.randint(MIN_RATE, MAX_RATE)
         random_duration = random.randint(MIN_DURATION, MAX_DURATION)
         fp.write("rate: %d \t duration: %d \n" %(random_rate, random_duration))
+
+        net_para = {}
+        net_para["duration"] = random_duration
+        net_para["capacity"] = int(random_rate/1000)
+        trace_pattern.append(net_para)
 
         interval = MTU_SIZE*8*1000/random_rate
 
@@ -58,3 +71,8 @@ with open("traces/period.trace", "w") as f:
                     f.write(str(i)+'\n')
 
         now_time = now_time+random_duration
+
+    trace_json["uplink"]["trace_pattern"] = trace_pattern
+
+with open(trace_json_path, "w") as fp:
+    json.dump(trace_json, fp, indent=4)
