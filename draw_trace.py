@@ -61,7 +61,7 @@ def init_args():
     parser.add_argument("--trace", type=str, default=drive_trace, help="the network trace path")
     parser.add_argument("--time", type=int, default=60, help="total time(s)")
     parser.add_argument("--interval", type=int, default=400, help="bandwidth sample interval(ms)")
-    parser.add_argument("--output", type=str, default=None, required=True, help="output folder")
+    parser.add_argument("--output", type=str, default=None, help="output folder")
 
     return parser
 
@@ -69,4 +69,5 @@ if __name__ == "__main__":
     parser = init_args()
     args = parser.parse_args()
     time_t, rate_t, trace_n = get_data(args.trace, args.time, args.interval)
-    draw_rate(time_t, rate_t, trace_n, args.output)
+    if args.output:
+        draw_rate(time_t, rate_t, trace_n, args.output)

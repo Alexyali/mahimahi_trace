@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 MTU_SIZE = 1500          # byte
 
-MAX_RATE = 24000*1000    # bps
-MIN_RATE = 8000*1000     # bps
+MAX_RATE = 1500*1000    # bps
+MIN_RATE = 800*1000     # bps
 
 MIN_DURATION = 200       # ms
 MAX_DURATION = 800       # ms
@@ -26,10 +26,9 @@ def random_num_with_fix_total(maxValue, num)->list:
 
 fp = open("traces/period_trace.log", "w")
 
-now_time = 0
-rate_t = []
-time_t = []
 with open("traces/period.trace", "w") as f:
+
+    now_time = 0
     while(now_time < TOTAL_TIME):
         random_rate = random.randint(MIN_RATE, MAX_RATE)
         random_duration = random.randint(MIN_DURATION, MAX_DURATION)
@@ -41,7 +40,10 @@ with open("traces/period.trace", "w") as f:
             interval_list = random_num_with_fix_total(random_duration, int(random_duration/interval))
             data = now_time
             for i in interval_list:
-                data += i
+                if interval <= 10:
+                    data += i
+                else:
+                    data += int(interval)
                 f.write(str(data)+'\n')
         else:
             if now_time == 0:
@@ -56,16 +58,3 @@ with open("traces/period.trace", "w") as f:
                     f.write(str(i)+'\n')
 
         now_time = now_time+random_duration
-        rate_t.append(random_rate/1000000)
-        time_t.append(now_time/1000)
-
-fp.close()
-
-plt.figure(figsize=(12,5))
-plt.step(time_t, rate_t)
-plt.grid()
-plt.ylim(0, MAX_RATE/1000000)
-plt.ylabel("rate/Mbps", fontsize=16)
-plt.xlabel("time/s", fontsize=16)
-plt.tick_params(labelsize=15)
-plt.savefig("traces/period_trace.png",dpi=300)
