@@ -6,8 +6,6 @@
 
 `gen_period_trace.py`用于生成一段周期性波动的网络路径，其网络带宽在(MIN_RATE, MAX_RATE)之间波动，每次随机选择的带宽值的持续时长为(MIN_DURATION, MAX_DURATION)区间的随机数。该路径持续时间为TOTAL_TIME。
 
-注意：MAX_RATE需要小于12mbps，目前程序无法生成大于12mbps的路径
-
 运行方法：
 
 ```shell
