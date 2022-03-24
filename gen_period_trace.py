@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 MTU_SIZE = 1500          # byte
 
-MAX_RATE = 24000*1000    # bps
-MIN_RATE = 8000*1000     # bps
+MAX_RATE = 1500*1000    # bps
+MIN_RATE = 800*1000     # bps
 
 MIN_DURATION = 200       # ms
 MAX_DURATION = 800       # ms
@@ -40,7 +40,10 @@ with open("traces/period.trace", "w") as f:
             interval_list = random_num_with_fix_total(random_duration, int(random_duration/interval))
             data = now_time
             for i in interval_list:
-                data += i
+                if interval <= 10:
+                    data += i
+                else:
+                    data += int(interval)
                 f.write(str(data)+'\n')
         else:
             if now_time == 0:
